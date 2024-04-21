@@ -105,6 +105,14 @@ int setRep(){
 	return rep;
 }
 
+int setDelay(){
+	int delay=1;
+	printf("delay (ms): ");
+	scanf("%i",&delay);
+	printf("%d\n",delay);
+	return delay;
+}
+
 int main(){
 
 	setup(); // initialize pins
@@ -112,22 +120,22 @@ int main(){
 	getchar(); // wait for first input
 
 	int rep=1;
-
+	int delay=500;
   while(1){
 
 		rep=setRep();
 		setRes();
 		setDir();
-
+		delay=setDelay();
      
 		for(int i=1;i<=rep;i++)
 		{
    			gpio_put(0, 1); // Set pin 0 to high
         printf("Step!\n");
-        sleep_ms(500); // 0.5s delay
+        sleep_ms(delay); // 0.5s delay
         gpio_put(0, 0); // Set pin 0 to low
 				printf("stepus \n");
-        sleep_ms(500); // 0.5s delay
+        sleep_ms(delay); // 0.5s delay
 				printf("rep %d z %d\n", i, rep);
   	}
 		}
